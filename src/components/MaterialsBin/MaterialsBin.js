@@ -18,30 +18,31 @@ export default function MaterialsBin() {
         "volume": 0,
         "cost": 0,
         "deliveryDate": "10-08-2020",
-    }
+    };
 
     // eslint-disable-next-line no-unused-vars
     const [listingsRes, refetch] = useAxios('/materials/');
-    const [details, setDetails] = useState({})
+    const [details, setDetails] = useState({});
+    const [showDetails, setShowDetails] = useState(false);
 
     // @TODO handleAddClick
     function handleAddClick(e) {
-        e.preventDefault()
-        console.log('Add Button Clicked')
+        e.preventDefault();
+        console.log('Add Button Clicked');
     }
 
     // @TODO handleDeleteClick
     function handleDeleteClick(e)  {
-        e.preventDefault()
-        console.log('Delete Button Clicked')
+        e.preventDefault();
+        console.log('Delete Button Clicked');
     }
 
     function handleListingClick(listing, e)  {
-        e.preventDefault()
-        setDetails(listing)
+        e.preventDefault();
+        setDetails(listing);
+        setShowDetails(true);
+        console.log(details);
     }
-
-
 
     if (listingsRes.loading) {
         return (
@@ -84,7 +85,7 @@ export default function MaterialsBin() {
                         <p><i>Error Loading Materials...</i></p>
                     </div>
                 </div>
-                <div className='MaterialsDetails error'>
+                <div className='MaterialsDetails empty'>
 
                 </div>
             </div>
@@ -131,7 +132,7 @@ export default function MaterialsBin() {
                                     const {name, color, volume} = listing;
                                     return (
                                         <li>
-                                            <button onClick={handleListingClick(listing)}>
+                                            <button onClick={(e) => handleListingClick(listing, e)}>
                                                 <svg height='100' width='100'>
                                                     <circle cx='50' cy='50' r='40' fill={color}/>
                                                 </svg>
@@ -147,7 +148,11 @@ export default function MaterialsBin() {
                             }
                         </ul>
                     </div>
-                    <MaterialDetails props={details}/>
+                    {
+                        showDetails
+                            ? <MaterialDetails props={details}/>
+                            : <div className='MaterialDetails blank'/>
+                    }
                 </div>
             )
         }

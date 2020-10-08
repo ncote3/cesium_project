@@ -7,6 +7,7 @@ const useAxios = makeUseAxios({
 })
 
 export default function MaterialDetails(props) {
+    console.log(props);
     // @TODO Implement nameFormChangeHandler
     function nameFormChangeHandler(e)  {
         e.preventDefault()
@@ -37,7 +38,7 @@ export default function MaterialDetails(props) {
         console.log('deliveryDateChangeHandler Clicked')
     }
 
-    const { name, color, volume, cost, date } = props;
+    const { name, color, volume, cost, date } = props.props;
     return (
         <div className='MaterialsDetails'>
             <form>
