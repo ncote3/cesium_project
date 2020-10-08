@@ -1,26 +1,21 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Title from "./components/Title/Title";
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {faPlus, faTrash} from '@fortawesome/free-solid-svg-icons'
+import MaterialListing from "./components/MaterialListing/MaterialListing";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <div className="App">
+            <Title title='Materials'/>
+            {/* @TODO potentially move this to Materials Bin */}
+
+            <div className='MaterialsContainer'>
+                <MaterialListing />
+            </div>
+        </div>
+    );
 }
 
 export default App;
